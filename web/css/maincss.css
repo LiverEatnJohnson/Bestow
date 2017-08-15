@@ -1,0 +1,113 @@
+/* 
+    Company    : MAGi iNDUSTRIES iNC.
+    Project    : Bestow
+    File       : maincss.css
+    Date       : Feb 11, 2013
+    Author     : LiverEatnJohnson
+    Copyright  : (C) Jeremiah Johnson 2013
+    License    : GNU GPL v3
+*/
+
+/* ////////////////////////////   ALL   ///////////////////////////// */
+
+/* BODY SETTINGS */
+body{ 
+  color: #000000;
+}
+body a{
+  color: #304D95;
+}
+/* IMG SETTINGS */
+img{
+  border: none;
+}
+/* CONTAINER SETTINGS */
+#container{
+  margin-left: 50px; margin-right: 50px;
+  height: 100%;
+}
+/* HEADER SETTINGS */
+#header{
+  background-color: #5898B2;
+}
+#header a {
+  float: right;
+  text-decoration: none;
+  color: #FFCE97;
+}
+#header a:visited {
+  text-decoration: none;
+}
+#header a:hover {
+  color: #000000;
+}
+
+/* LAYOUT SETTINGS */
+#layout{
+  padding: 5px 5px 5px 5px;
+}
+#layout td {
+  padding: 10px 10px 10px 10px;
+  vertical-align: top;
+}
+
+/* MENU SETTINGS */
+#menu{
+  float: left;
+}
+#menu ul {
+  list-style-type: none;
+}
+#menu a {
+  text-decoration: none;
+  color:blue;
+}
+#menu a:hover {
+  color: #B27F46;
+}
+#menu a:visited {
+  text-decoration: none;
+}
+/* MAIN SETTINGS */
+#main{
+  margin: 5px 5px 5px 5px;
+}
+/* FOOTER SETTINGS */
+#footer{
+  clear: both;
+}
+/* PRINT SETTINGS */
+@media print {
+  .noPrint {
+    display:none;
+  }
+}
+
+/* ////////////////////////////   INDEX PAGE   ///////////////////////////// */
+
+/* ////////////////////////////   HELP PAGE   ///////////////////////////// */
+
+/* ////////////////////////////   ABOUT PAGE   ///////////////////////////// */
+
+/* ////////////////////////////   REPORTS PAGE   ///////////////////////////// */
+
+/* ////////////////////////////   DONOR PAGES   ///////////////////////////// */
+#donorDetails {
+  padding: 10px 10px 10px 10px;
+}
+#donorList thead{
+  background-color: #97E1FE;
+}
+/* ////////////////////////////   ORGINZATION PAGES   ///////////////////////////// */
+
+/* ////////////////////////////   EMPLOYEE PAGES   ///////////////////////////// */
+
+/* ////////////////////////////   DEPARTMENT PAGES   ///////////////////////////// */
+
+/* ////////////////////////////   DONATION PAGES   ///////////////////////////// */
+
+/* ////////////////////////////   ITEM PAGES   ///////////////////////////// */
+
+/* ////////////////////////////   REPORTS PAGES   ///////////////////////////// */
+
+/* ////////////////////////////   EMAIL PAGES   ///////////////////////////// */

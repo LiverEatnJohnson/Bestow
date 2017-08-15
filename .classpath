@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-core-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-1.5.5.jar"/>
+	<classpathentry kind="lib" path="lib/iText-2.1.7.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-5.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail-api-1.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/json-lib-2.2.2-jdk15.jar"/>
+	<classpathentry kind="lib" path="lib/mailapi-1.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/poi-3.6.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-9.2-1002.jdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/smtp-1.5.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

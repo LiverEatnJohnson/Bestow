@@ -1,0 +1,3 @@
+notes 0.1 to 0.2:
+  connect and remove not null from all donor fields except lastname
+  add column email to donor table

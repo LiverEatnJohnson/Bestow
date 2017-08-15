@@ -1,0 +1,5 @@
+<%--(C) Copyright Jeremiah Johnson 2013 GNU GPLV3--%>
+<%@ page pageEncoding="UTF-8" %>
+<h4 style="text-align: right;">
+    <a href="<%=request.getContextPath()%>/about.jsp" title="About">Bestow Version 0.3 &COPY;Copyright Jeremiah Johnson 2013</a> 
+</h4>

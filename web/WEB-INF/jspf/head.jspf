@@ -1,0 +1,4 @@
+<%--(C) Copyright Jeremiah Johnson 2013 GNU GPLV3--%>
+<%@ page pageEncoding="UTF-8" %>
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/maincss.css"/>
+<script src="<%=request.getContextPath()%>/js/jquery-1.9.1.min.js"></script>

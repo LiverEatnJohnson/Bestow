@@ -1,0 +1,11 @@
+<%--(C) Copyright Jeremiah Johnson 2013 GNU GPLV3--%>
+<%@ page pageEncoding="UTF-8" %>
+<ul>
+    <li><a href="<%=request.getContextPath()%>/">Home</a></li>
+    <li><a href="<%=request.getContextPath()%>/organization/organizationList.jsp">Organization</a></li>
+    <li><a href="<%=request.getContextPath()%>/department/departmentList.jsp">Departments</a></li>
+    <li><a href="<%=request.getContextPath()%>/employee/employeeList.jsp">Employees</a></li>
+    <li><a href="<%=request.getContextPath()%>/donor/donorList.jsp">Donors</a></li>
+    <li><a href="<%=request.getContextPath()%>/donations/donationList.jsp">Donations</a></li>
+    <li><a href="<%=request.getContextPath()%>/report/reportList.jsp">Reports</a></li>
+</ul>

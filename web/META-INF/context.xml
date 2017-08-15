@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/Bestow">
+    <Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="Bestow" password="%TGB5tgb" type="javax.sql.DataSource" url="jdbc:postgresql://localhost:5432/Bestow" username="bestow_admin"/>
+</Context>

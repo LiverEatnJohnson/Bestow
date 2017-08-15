@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DonationReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85e41bf7-706e-4753-a756-477450a61a88">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_donationId" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     item.quantity*item.value AS ITEM_TOTAL,
+     donation.id AS donation_id,
+     donation."code" AS donation_code,
+     donation."date" AS donation_date,
+     donation."type" AS donation_type,
+     item."item" AS item_item,
+     item."quantity" AS item_quantity,
+     item."value" AS item_value,
+     donor."address" AS donor_address,
+     donor."city" AS donor_city,
+     donor."email" AS donor_email,
+     donor."first_name" AS donor_first_name,
+     donor."last_name" AS donor_last_name,
+     donor."phone" AS donor_phone,
+     donor."state" AS donor_state,
+     donor."type" AS donor_type,
+     donor."zip" AS donor_zip,
+     employee."first_name" AS employee_first_name,
+     employee."last_name" AS employee_last_name,
+     employee."title" AS employee_title,
+     department."title" AS department_title,
+     organization."address" AS organization_address,
+     organization."city" AS organization_city,
+     organization."phone" AS organization_phone,
+     organization."state" AS organization_state,
+     organization."title" AS organization_title,
+     organization."zip" AS organization_zip,
+     employee."office" AS employee_office
+FROM
+     "public"."donation" donation INNER JOIN "public"."item" item ON donation."id" = item."donation_id"
+     INNER JOIN "public"."donor" donor ON donation."donor_id" = donor."id"
+     INNER JOIN "public"."employee" employee ON donation."employee_id" = employee."id"
+     INNER JOIN "public"."department" department ON donation."department_id" = department."id"
+     INNER JOIN "public"."organization" organization ON department."organization_id" = organization."id"
+WHERE
+     donation.id = COALESCE($P{P_donationId}, donation.id)
+ORDER BY
+     donor.last_name,
+     donor.first_name,
+     donation.date]]>
+	</queryString>
+	<field name="item_total" class="java.lang.Double"/>
+	<field name="donation_id" class="java.lang.Integer"/>
+	<field name="donation_code" class="java.lang.String"/>
+	<field name="donation_date" class="java.sql.Date"/>
+	<field name="donation_type" class="java.lang.String"/>
+	<field name="item_item" class="java.lang.String"/>
+	<field name="item_quantity" class="java.lang.Double"/>
+	<field name="item_value" class="java.lang.Double"/>
+	<field name="donor_address" class="java.lang.String"/>
+	<field name="donor_city" class="java.lang.String"/>
+	<field name="donor_email" class="java.lang.String"/>
+	<field name="donor_first_name" class="java.lang.String"/>
+	<field name="donor_last_name" class="java.lang.String"/>
+	<field name="donor_phone" class="java.lang.String"/>
+	<field name="donor_state" class="java.lang.String"/>
+	<field name="donor_type" class="java.lang.String"/>
+	<field name="donor_zip" class="java.lang.String"/>
+	<field name="employee_first_name" class="java.lang.String"/>
+	<field name="employee_last_name" class="java.lang.String"/>
+	<field name="employee_title" class="java.lang.String"/>
+	<field name="department_title" class="java.lang.String"/>
+	<field name="organization_address" class="java.lang.String"/>
+	<field name="organization_city" class="java.lang.String"/>
+	<field name="organization_phone" class="java.lang.String"/>
+	<field name="organization_state" class="java.lang.String"/>
+	<field name="organization_title" class="java.lang.String"/>
+	<field name="organization_zip" class="java.lang.String"/>
+	<field name="employee_office" class="java.lang.String"/>
+	<variable name="donationTotal" class="java.lang.Double" resetType="Group" resetGroup="donation_id" calculation="Sum">
+		<variableExpression><![CDATA[Math.round($F{item_total}*100)/100]]></variableExpression>
+	</variable>
+	<group name="donation_id">
+		<groupExpression><![CDATA[$F{donation_id}]]></groupExpression>
+		<groupHeader>
+			<band height="300">
+				<line>
+					<reportElement uuid="730b39a4-e4f0-4001-8ce6-7774542afdff" x="-20" y="120" width="595" height="1" forecolor="#666666"/>
+				</line>
+				<textField pattern="MM/dd/yyyy">
+					<reportElement uuid="44b65e09-50ef-474e-8480-aa8b9cfac985" mode="Opaque" x="2" y="0" width="222" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{donation_date}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="0e21cecf-107e-484f-9cb9-030e78bb0b17" mode="Opaque" x="2" y="32" width="54" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Code]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="6b6ec199-0279-43f2-8ef3-abf6a240caef" x="56" y="32" width="51" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{donation_code}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="66abd9e0-7abd-409c-a2df-1b11c85c4d51" mode="Opaque" x="107" y="32" width="54" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Type]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement uuid="0e4b2777-2201-4709-8399-0fe5c25501d2" x="161" y="32" width="56" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{donation_type}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="c1f9be38-cdbd-41be-88cd-8fef2938eb77" x="100" y="52" width="110" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{donor_type}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="0faf7f61-fe71-4ebb-a763-17423733bbb8" mode="Opaque" x="2" y="52" width="96" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Donor Type]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c4ee6959-c298-4389-823f-1393501bda20" mode="Opaque" x="0" y="218" width="159" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Recieving Employee]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="25925419-42cc-48a1-b24e-45be6c10f2dc" x="134" y="238" width="170" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{employee_first_name}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="5f6ff3f7-a5ca-4647-b390-c003c2eb45cc" x="304" y="238" width="168" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{employee_last_name}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="40561b9c-225d-431b-a5f4-301bff337e69" x="0" y="238" width="134" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{employee_title}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="b9171d99-c3d7-4a1d-ae1e-760971f1cdb7" x="199" y="146" width="159" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{department_title}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="a5a32865-1566-473e-842c-7a477f2473ee" x="2" y="178" width="197" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{organization_address}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="35a67b0e-4892-4851-bedc-5897e49366bc" x="199" y="178" width="137" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{organization_city}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="0830e407-a485-47f3-aa20-4c898ac11aea" mode="Opaque" x="2" y="126" width="159" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Recieving Department]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f92d959d-c741-459c-bdee-d96d79185467" x="3" y="145" width="196" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{organization_title}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="90ca61d8-1c70-4b70-a144-225bf9816864" x="336" y="178" width="42" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{organization_state}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="605e8c19-9c5e-478d-9e19-44fc0abd7e79" x="378" y="178" width="70" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{organization_zip}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f249abb0-0a9e-4a3c-a0ac-0b45f09ff1e8" x="0" y="198" width="226" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{organization_phone}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="70f85826-a221-4200-902b-548e458df829" x="0" y="258" width="224" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{employee_office}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="b4e69047-c78c-44cf-9522-92cf69b0c29a" mode="Opaque" x="23" y="278" width="255" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e18dff0a-9592-49e8-aae3-bac53e811a86" mode="Opaque" x="278" y="278" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Quantity]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e4fce109-f6b0-451f-8609-a4a8fe73987c" mode="Opaque" x="357" y="278" width="91" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Value]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="81d8d4e5-1060-4d83-b2fd-ff9a2fc8d640" mode="Transparent" x="357" y="146" width="181" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Department]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0f3d6ec2-cf6f-4446-b79b-c8befb963db5" mode="Opaque" x="447" y="278" width="91" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sub-Total]]></text>
+				</staticText>
+				<frame>
+					<reportElement uuid="73b9c275-c743-4212-85d1-88aad659b9ea" x="224" y="0" width="331" height="120"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="2a890460-59f8-4904-8660-f3f1f6495a5b" x="3" y="82" width="182" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_email}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="4a719dd9-e0de-4972-bd65-62e910ecac5a" x="3" y="62" width="137" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_city}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="c3e76f6f-90c4-461a-8efa-4f52e33cad0d" x="3" y="20" width="326" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_address}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="cddf1d0e-bc3d-4c3b-8c41-3a41799206e8" x="182" y="62" width="112" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_zip}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="2a89768b-e002-4102-be96-8470b7976c16" x="140" y="62" width="43" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_state}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="e53cd6ef-6ede-4610-aa81-3c124bd42371" x="180" y="82" width="149" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_phone}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="e798929f-b036-4ab2-9992-4ade39bf9036" x="151" y="0" width="180" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_first_name}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true">
+						<reportElement uuid="62ed68e2-c7f0-4167-80fa-ff199879b8bc" x="0" y="0" width="151" height="20"/>
+						<textElement>
+							<font size="14"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{donor_last_name}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<staticText>
+					<reportElement uuid="b6d87ced-ead8-4197-8d5c-17cb389ba15b" mode="Opaque" x="342" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Donation Total]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00">
+					<reportElement uuid="74b6e294-b687-4687-9d7c-690ba6b87623" mode="Opaque" x="453" y="0" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{donationTotal}]]></textFieldExpression>
+				</textField>
+				<break>
+					<reportElement uuid="5236ccbf-8807-42a1-91cf-7509cbff1d5f" x="0" y="10" width="100" height="1"/>
+				</break>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="95406f83-d225-4947-97ed-ca6a15633f03" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="7ead62a9-e54c-4dac-9ea5-a6d2e2f300e3" x="20" y="20" width="322" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Donation Reciept]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4f4c33d6-dfbe-4f90-85a1-6d8e547c6cd2" x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Bestow Donation Tracking]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="4"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="0201c779-5526-4eee-ae66-fffaeb72b23a" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22">
+			<line>
+				<reportElement uuid="62b9c7a9-12b8-46da-92f6-38da26c278c8" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ea76bd50-38d7-45d3-9616-0fb012cb176c" x="24" y="0" width="254" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_item}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="2e2134aa-3ed1-4a0e-8c6d-f488e84cf13d" x="281" y="0" width="83" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_quantity}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<reportElement uuid="60ac8b1f-5187-4724-9925-dcd6e777cebc" x="364" y="0" width="83" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_value}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<reportElement uuid="ce56afe7-095b-4564-9950-dcd69029f401" x="448" y="0" width="90" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.round($F{item_total}*100)/100]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="fcae4c44-de1d-4ac1-a25d-62374cb05431" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="7a3706e8-8c60-4cc6-b676-1ab8b40e8ed4" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="1a3487a9-54e4-463d-9fad-66ce8d2a0540" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

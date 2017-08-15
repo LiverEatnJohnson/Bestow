@@ -1,0 +1,6 @@
+<%--(C) Copyright Jeremiah Johnson 2013 GNU GPLV3--%>
+<%@ page pageEncoding="UTF-8" %>
+<h1 style="color: white;">Bestow</h1>
+<h3 style="color: white;">Donation Tracking</h3>
+<a href="<%=request.getContextPath()%>/help.jsp" target="_blank"><img src="<%=request.getContextPath()%>/images/icons/help.png" alt="Help" title="Help"/></a>
+
